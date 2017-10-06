@@ -36,6 +36,7 @@ extension ProductsViewController {
         theCollection = collection
         print ("configuration tried")
         products = collection.products
+        hasNextProductPage = collection.productsPageInfo?.hasNextPage
         lastProductCursor = products.last?.cursor
         print(lastProductCursor!)
     }

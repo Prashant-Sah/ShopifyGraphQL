@@ -125,7 +125,8 @@ extension ViewController : CollectionCellProtocol {
                     for productViewModel in productViewModels! {
                         self.collectionsArray[index].products.append(productViewModel)
                     }
-                    
+                    self.collectionsArray[index].productsPageInfo = productPageInfo
+
                     let indexSet = IndexSet(integer: index)
                     DispatchQueue.main.async {
                         self.myTableView.reloadSections(indexSet, with: UITableViewRowAnimation.none)
