@@ -27,11 +27,8 @@
 import Foundation
 import MobileBuySDK
 
-final class ImageViewModel: ViewModel {
+final class ImageViewModel{
     
-    typealias ModelType = Storefront.ImageEdge 
-    
-    let model:    ModelType
     let cursor:   String
     
     let url:      URL
@@ -39,14 +36,10 @@ final class ImageViewModel: ViewModel {
     // ----------------------------------
     //  MARK: - Init -
     //
-    required init(from model: ModelType) {
-        self.model    = model
+    init(from model: Storefront.ImageEdge) {
+        
         self.cursor   = model.cursor
         
         self.url      = model.node.src
     }
-}
-
-extension Storefront.ImageEdge: ViewModeling {
-    typealias ViewModelType = ImageViewModel
 }

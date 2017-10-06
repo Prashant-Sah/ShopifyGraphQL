@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,14 +19,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxN-Kd-Hx9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="399.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="412"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="No_Image_Available" translatesAutoresizingMaskIntoConstraints="NO" id="Zhl-ew-uEp">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="399.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="412"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="1Ev-nN-9kO"/>
-                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -37,12 +35,9 @@
                         </constraints>
                     </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="8u8-y0-ose">
-                        <rect key="frame" x="0.0" y="400" width="375" height="150"/>
+                        <rect key="frame" x="0.0" y="412.5" width="375" height="137.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="150" id="hk5-hL-8K3"/>
-                        </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="NRK-k7-eNK">
                             <size key="itemSize" width="150" height="150"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -62,6 +57,9 @@
                     <constraint firstAttribute="bottom" secondItem="8u8-y0-ose" secondAttribute="bottom" id="kWu-Ss-npa"/>
                 </constraints>
             </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="8u8-y0-ose" firstAttribute="height" secondItem="DTC-QF-jnw" secondAttribute="height" multiplier="0.25" id="Mis-El-Fw9"/>
+            </constraints>
             <connections>
                 <outlet property="mainImageView" destination="Zhl-ew-uEp" id="Xdj-2k-Z0Z"/>
                 <outlet property="myCollectionView" destination="8u8-y0-ose" id="YAc-Mv-UIH"/>

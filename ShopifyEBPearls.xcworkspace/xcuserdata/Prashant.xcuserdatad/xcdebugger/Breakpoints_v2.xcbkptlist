@@ -2,4 +2,70 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShopifyEBPearls/Tables and Collections/CollectionCell.swift"
+            timestampString = "528953626.872853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "configureCell(withCollection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShopifyEBPearls/Client.swift"
+            timestampString = "528953877.017341"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "getProducts(withQuery:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;MobileBuySDK.Storefront.QueryRoot&gt;, Swift.Optional&lt;MobileBuySDK.Graph.QueryError&gt;) -&gt; () in ShopifyEBPearls.Client.getProducts(withQuery: MobileBuySDK.Storefront.QueryRootQuery, completion: (Swift.Optional&lt;Swift.Array&lt;ShopifyEBPearls.ProductViewModel&gt;&gt;, ShopifyEBPearls.PageInfo) -&gt; ()) -&gt; ()"
+                  moduleName = "ShopifyEBPearls"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/prashnant/Desktop/ShopifyEBPearls/ShopifyEBPearls/Client.swift"
+                  timestampString = "528953878.267278"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "339">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;MobileBuySDK.Storefront.QueryRoot&gt;, Swift.Optional&lt;MobileBuySDK.Graph.QueryError&gt;) -&gt; () in ShopifyEBPearls.Client.getProducts(withQuery: MobileBuySDK.Storefront.QueryRootQuery, completion: (Swift.Optional&lt;Swift.Array&lt;ShopifyEBPearls.ProductViewModel&gt;&gt;, ShopifyEBPearls.PageInfo) -&gt; ()) -&gt; ()"
+                  moduleName = "ShopifyEBPearls"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/prashnant/Desktop/ShopifyEBPearls/ShopifyEBPearls/Client.swift"
+                  timestampString = "528953878.27427"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "1466">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

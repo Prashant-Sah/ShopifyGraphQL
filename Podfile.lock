@@ -1,12 +1,17 @@
 PODS:
   - Mobile-Buy-SDK (3.0.7)
+  - SDWebImage (4.1.0):
+    - SDWebImage/Core (= 4.1.0)
+  - SDWebImage/Core (4.1.0)
 
 DEPENDENCIES:
   - Mobile-Buy-SDK (~> 3.0.7)
+  - SDWebImage (~> 4.0)
 
 SPEC CHECKSUMS:
   Mobile-Buy-SDK: 311dbdcb1d537de33d17b1eac20c88d347aa0eb5
+  SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
 
-PODFILE CHECKSUM: 86e52ac187b8db86e45d2498b593c9c77b0c743e
+PODFILE CHECKSUM: f64522f67f2d443cf949cfcb0146b002e017910d
 
 COCOAPODS: 1.2.0

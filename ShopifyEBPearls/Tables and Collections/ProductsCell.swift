@@ -8,6 +8,7 @@
 
 import UIKit
 import MobileBuySDK
+import SDWebImage
 
 class ProductsCell: UICollectionViewCell {
     
@@ -17,22 +18,24 @@ class ProductsCell: UICollectionViewCell {
     @IBOutlet weak var productPriceLabel: UILabel!
     
     override func draw(_ rect: CGRect) {
-        
     }
     
-    func configureCell(withProduct product : Storefront.Product ) {
+    func configureCell(withProduct product : ProductViewModel ) {//Storefront.Product ) {
 
-        let productImages = product.images.edges.map { $0.node }
-        if let imgURL = productImages.first?.src {
-
-            let imgData = NSData( contentsOf: imgURL)
-            self.productImageView.image = UIImage(data: imgData! as Data)
-            self.productImageView.contentMode = .scaleAspectFit
+        let productImageURL = product.images.first?.url
+        if(productImageURL != nil){
+            /*
+            DispatchQueue.global(qos: .userInteractive ).async {
+                let productImageData = NSData(contentsOf: productImageURL!)
+                DispatchQueue.main.async {
+                    self.productImageView.image = UIImage(data: productImageData! as Data)
+                }
+            }*/
+            productImageView.sd_setImage(with: productImageURL, placeholderImage: nil, options: .scaleDownLargeImages, completed: nil)
+        }else{
+            self.productImageView.image = #imageLiteral(resourceName: "No_Image_Available")
         }
-
-        self.productNameLabel.text = product.title
-        let productVariants = product.variants.edges.map { $0.node }
-        //self.productPriceLabel.text = "\(String(describing: productVariants.first?.price))"
         
+        self.productNameLabel.text = product.title
     }
 }

@@ -26,7 +26,7 @@
 
 import MobileBuySDK
 
-struct PageableArray<T: ViewModel> {
+struct PageableArray<T> {
     
     private(set) var items: [T]
     
@@ -48,10 +48,10 @@ struct PageableArray<T: ViewModel> {
         self.pageInfo = pageInfo
     }
     
-    init<M>(with items: [M], pageInfo: Storefront.PageInfo) where M: ViewModeling, M.ViewModelType == T {
-        self.items    = items.viewModels
-        self.pageInfo = pageInfo
-    }
+//    init<M>(with items: [M], pageInfo: Storefront.PageInfo) where M: ViewModeling, M.ViewModelType == T {
+//        self.items    = items.viewModels
+//        self.pageInfo = pageInfo
+//    }
     
     // ----------------------------------
     //  MARK: - Adding -

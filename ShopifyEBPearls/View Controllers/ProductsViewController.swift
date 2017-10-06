@@ -10,9 +10,15 @@ import UIKit
 import MobileBuySDK
 
 class ProductsViewController: UIViewController {
-
+    
     @IBOutlet weak var productsCollectionView: UICollectionView!
-    var products : [Storefront.Product] = [Storefront.Product]()
+    
+    var theCollection : CollectionViewModel?
+    var products = [ProductViewModel]()
+    
+    var hasNextProductPage : Bool?
+    var lastProductCursor : String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,18 +26,18 @@ class ProductsViewController: UIViewController {
         self.productsCollectionView.dataSource = self
         self.productsCollectionView.delegate = self
         self.productsCollectionView.register(UINib(nibName: "ProductCell", bundle: nil), forCellWithReuseIdentifier: "ProductCell")
-        self.productsCollectionView.reloadData()
     }
-
 }
 
 extension ProductsViewController {
     
-    func configureView(withCollection collection : Storefront.Collection) {
+    func configureView(withCollection collection : CollectionViewModel) {//Storefront.Collection) {
         
+        theCollection = collection
         print ("configuration tried")
-        products = collection.products.edges.map { $0.node }
-        //self.productsCollectionView.reloadData()
+        products = collection.products
+        lastProductCursor = products.last?.cursor
+        print(lastProductCursor!)
     }
 }
 
@@ -51,13 +57,11 @@ extension ProductsViewController : UICollectionViewDataSource {
         if let cell = self.productsCollectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as? ProductsCell {
             
             cell.configureCell(withProduct: products[indexPath.row])
-            
             return cell
         }else {
             return ProductsCell()
         }
     }
-    
 }
 
 
@@ -68,7 +72,6 @@ extension ProductsViewController : UICollectionViewDelegate {
         productDetailsVC?.product = products[indexPath.row]
         self.navigationController?.pushViewController(productDetailsVC!, animated: true)
     }
-
 }
 
 extension ProductsViewController : UICollectionViewDelegateFlowLayout{
@@ -83,13 +86,22 @@ extension ProductsViewController : UICollectionViewDelegateFlowLayout{
 
 extension ProductsViewController : UIScrollViewDelegate {
     
-    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let endScrolling = scrollView.contentOffset.y + scrollView.frame.size.height;
         
-        if (endScrolling >= scrollView.contentSize.height){
+        if (endScrolling >= scrollView.contentSize.height && hasNextProductPage! ) {
             
-            //Client.shared.getProducts(inCollection: <#T##Storefront.Collection#>, withQuery: ClientQuery.queryForProducts(in: <#T##Storefront.Collection#>, limit: 5, after: <#T##String?#>), completion: <#T##([Storefront.Product]?) -> ()#>)
+            Client.shared.getProducts(withQuery: ClientQuery.queryForProducts(in: theCollection!, limit: 5, after: lastProductCursor), completion: { (productViewModels, productPageInfo) in
+                
+                self.hasNextProductPage = productPageInfo.hasNextPage!
+                for product in productViewModels! {
+                    self.products.append(product)
+                }
+                
+                self.lastProductCursor = self.products.last?.cursor
+                self.productsCollectionView.reloadData()
+            })
+            
         }
     }
 }

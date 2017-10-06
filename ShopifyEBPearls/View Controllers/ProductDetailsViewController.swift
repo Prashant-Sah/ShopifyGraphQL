@@ -11,12 +11,13 @@ import WebKit
 import MobileBuySDK
 
 class ProductDetailsViewController: UIViewController {
+    
     @IBOutlet weak var titleImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var addToCartButton: UIButton!
     @IBOutlet weak var descriptionWebKitView: WKWebView!
     
-    var product : Storefront.Product?
+    weak var product : ProductViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +27,10 @@ class ProductDetailsViewController: UIViewController {
         
     }
     
-    func configureView(withProduct product : Storefront.Product ) {
+    func configureView(withProduct product : ProductViewModel ) {
         
-        let productImages = self.product?.images.edges.map { $0.node }
-        print("productImages Count : \(String(describing: productImages?.count))")
-        let imageData = NSData(contentsOf: (productImages?.first?.src)!)
-        self.titleImageView.image = UIImage(data: imageData as! Data)
+        let imageData = NSData(contentsOf: (product.images.first?.url)!)
+        self.titleImageView.image = UIImage(data: imageData! as Data)
         self.titleImageView.contentMode = .scaleAspectFit
         
         self.titleLabel.text = product.title
@@ -39,13 +38,11 @@ class ProductDetailsViewController: UIViewController {
         
         // WKWebView behaves more like Mobile Safari than a UIWebView does, so you need to set the viewport if you want to control scaling or general sizing.
         let headerString = "<meta name=\"viewport\" content=\"initial-scale=1.0\" /> \n"
-        let finalString = headerString + (product.descriptionHtml)
-        print(finalString)
+        let finalString = headerString + (product.summary)
         self.descriptionWebKitView.loadHTMLString(finalString, baseURL: nil)
         addToCartButton.setTitle("Add To Cart", for: .normal)
         
     }
-    
 }
 
 

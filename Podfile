@@ -7,4 +7,5 @@ target 'ShopifyEBPearls' do
 
   # Pods for ShopifyEBPearls
   pod 'Mobile-Buy-SDK', '~> 3.0.7'
+  pod 'SDWebImage', '~>4.0'
 end

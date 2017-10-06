@@ -27,50 +27,42 @@
 import Foundation
 import MobileBuySDK
 
-final class ProductViewModel: ViewModel {
+final class ProductViewModel {
     
-    typealias ModelType = Storefront.ProductEdge
-    
-    let model:    ModelType
     let cursor:   String
     
-    let id:       String
-    let title:    String
-    let summary:  String
-    let price:    String
-    let images:   PageableArray<ImageViewModel>
-    let variants: PageableArray<VariantViewModel>
+    var id:       String
+    var title:    String
+    var summary:  String
+    var price:    Decimal
+    var images =   [ImageViewModel]()
+    var variants = [VariantViewModel]()
     
     // ----------------------------------
     //  MARK: - Init -
     //
-    required init(from model: ModelType) {
-        self.model    = model
+    required init(from model: Storefront.ProductEdge) {
+        
         self.cursor   = model.cursor
-        
-        let variants = model.node.variants.edges.viewModels.sorted {
-            $0.0.price < $0.1.price
-        }
-        
-        let lowestPrice = variants.first?.price
         
         self.id       = model.node.id.rawValue
         self.title    = model.node.title
         self.summary  = model.node.descriptionHtml
-        self.price    = lowestPrice == nil ? "No price" : Currency.stringFrom(lowestPrice!)
+        //self.price    = lowestPrice == nil ? "No price" : Currency.stringFrom(lowestPrice!)
         
-        self.images   = PageableArray(
-            with:     model.node.images.edges,
-            pageInfo: model.node.images.pageInfo
-        )
+        for imageEdge in model.node.images.edges {
+            let imageModelObject = ImageViewModel(from: imageEdge)
+            self.images.append(imageModelObject)
+        }
         
-        self.variants = PageableArray(
-            with:     model.node.variants.edges,
-            pageInfo: model.node.variants.pageInfo
-        )
+        for variantEdge in model.node.variants.edges {
+            let variantModelObject = VariantViewModel(from: variantEdge)
+            variants.append(variantModelObject)
+        }
+        
+        variants = variants.sorted { $0.price > $1.price }
+        self.price = (variants.first?.price)!
+        
     }
 }
 
-extension Storefront.ProductEdge: ViewModeling {
-    typealias ViewModelType = ProductViewModel
-}

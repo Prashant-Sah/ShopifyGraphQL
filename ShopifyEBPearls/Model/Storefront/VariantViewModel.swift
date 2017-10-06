@@ -27,11 +27,8 @@
 import Foundation
 import MobileBuySDK
 
-final class VariantViewModel: ViewModel {
-    
-    typealias ModelType = Storefront.ProductVariantEdge 
-    
-    let model:  ModelType
+final class VariantViewModel {
+ 
     let cursor: String
     
     let id:     String
@@ -41,16 +38,12 @@ final class VariantViewModel: ViewModel {
     // ----------------------------------
     //  MARK: - Init -
     //
-    required init(from model: ModelType) {
-        self.model  = model
+    required init(from model: Storefront.ProductVariantEdge) {
+        
         self.cursor = model.cursor
         
         self.id     = model.node.id.rawValue
         self.title  = model.node.title
         self.price  = model.node.price as Decimal
     }
-}
-
-extension Storefront.ProductVariantEdge: ViewModeling {
-    typealias ViewModelType = VariantViewModel
 }

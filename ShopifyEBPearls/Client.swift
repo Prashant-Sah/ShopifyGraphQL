@@ -45,27 +45,42 @@ class Client {
     
     
     
-    func getCollectionsAndProducts(withQuery query : Storefront.QueryRootQuery, completion :  @escaping (_ collections : [Storefront.Collection]?) -> () ) {
+    func getCollectionsAndProducts(withQuery query : Storefront.QueryRootQuery, completion :  @escaping (_ collectionViewModels : [CollectionViewModel]?, _ collectionPageInfo : PageInfo ) -> () ) {
         
         let task = client.queryGraphWith(query) { (response, error) in
             
-            if let response = response{
-                //let lastCollectionCursor = response.
-                let obtainedCollections = response.shop.collections.edges.map {$0.node}
+            let collectionPageInfo = PageInfo(withPageInfo: (response?.shop.collections.pageInfo)!)
+            var collectionViewModels = [CollectionViewModel]()
+            
+            for collectionEdge in (response?.shop.collections.edges)! {
                 
-                completion(obtainedCollections)
+                let collectionModelObject = CollectionViewModel(from: collectionEdge)
+                collectionViewModels.append(collectionModelObject)
             }
+            
+            completion(collectionViewModels, collectionPageInfo)
+            
         }
         task.resume()
     }
     
-    func getProducts(inCollection collection : Storefront.Collection, withQuery query : Storefront.QueryRootQuery, productLimit : Int = 25, completion :  @escaping (_ products : [Storefront.Product]?) -> () ){
+    func getProducts(withQuery query : Storefront.QueryRootQuery, completion :  @escaping (_ productViewModels : [ProductViewModel]?, _ productPageInfo : PageInfo) -> () ){
         
         let task = client.queryGraphWith(query) { (response, error) in
             
             if let response = response{
-                let products = response.shop.products.edges.map{ $0.node }
-                completion(products)
+                
+                //let productPageInfo = PageInfo(withPageInfo: response.shop.products.pageInfo)
+                var productViewModels = [ProductViewModel]()
+                let collection = response.node as? Storefront.Collection
+                let productPageInfo = PageInfo(withPageInfo: (collection?.products.pageInfo)!)
+                
+                for productEdge in (collection?.products.edges)! {
+                    let productModelObject = ProductViewModel(from: productEdge)
+                    productViewModels.append(productModelObject)
+                }
+                //let products = response.shop.products.edges.map{ $0.node }
+                completion(productViewModels, productPageInfo )
             }
         }
         task.resume()
@@ -127,10 +142,6 @@ class Client {
         task.resume()
         
     }
-    
-    
-    
-    
     
     
     

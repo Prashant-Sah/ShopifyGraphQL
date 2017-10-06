@@ -9,7 +9,7 @@
 //  of this software and associated documentation files (the "Software"), to deal
 //  in the Software without restriction, including without limitation the rights
 //  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
+//  copies of the Software, and to permit persons to whom the Software isdfgdtbfg
 //  furnished to do so, subject to the following conditions:
 //
 //  The above copyright notice and this permission notice shall be included in
@@ -27,38 +27,36 @@
 import Foundation
 import MobileBuySDK
 
-final class CollectionViewModel: ViewModel {
+class CollectionViewModel {
     
-    typealias ModelType = Storefront.CollectionEdge
+    var cursor:      String
     
-    let model:       ModelType
-    let cursor:      String
+    var id:          String
+    var title:       String
+    var description: String
+    var imageURL:    URL?
+    var products = [ProductViewModel]()
     
-    let id:          String
-    let title:       String
-    let description: String
-    let imageURL:    URL?
-    var products:    PageableArray<ProductViewModel>
-    
+    var productsPageInfo : PageInfo?
     // ----------------------------------
     //  MARK: - Init -
     //
-    required init(from model: ModelType) {
-        self.model       = model
-        self.cursor      = model.cursor
     
+    init(from model: Storefront.CollectionEdge) {
+        
+        self.cursor      = model.cursor
+        
         self.id          = model.node.id.rawValue
         self.title       = model.node.title
         self.imageURL    = model.node.image?.src
         self.description = model.node.descriptionHtml
         
-        self.products    = PageableArray(
-            with:     model.node.products.edges,
-            pageInfo: model.node.products.pageInfo
-        )
+        self.productsPageInfo = PageInfo(withPageInfo: model.node.products.pageInfo)
+        
+        for productEdge in model.node.products.edges {
+            let productModelObject = ProductViewModel(from: productEdge)
+            self.products.append(productModelObject)
+        }
+        
     }
-}
-
-extension Storefront.CollectionEdge: ViewModeling {
-    typealias ViewModelType = CollectionViewModel
 }
