@@ -45,25 +45,41 @@ class Client {
     
     
     
-    func getCollectionsAndProducts(withQuery query : Storefront.QueryRootQuery, completion :  @escaping (_ collectionViewModels : [CollectionViewModel]?, _ collectionPageInfo : PageInfo ) -> () ) {
+    /// Get collections from the shop ; Products lie inside the collections itself
+    ///
+    /// - Parameters:
+    ///   - query: Query from ClientQuery class, specify limit and cursors in the query method
+    ///   - completion: passes collectionModels on completion
+    func getCollections(withQuery query : Storefront.QueryRootQuery, completion :  @escaping (_ collectionViewModels : [CollectionViewModel]?, _ collectionPageInfo : PageInfo ) -> () ) {
         
         let task = client.queryGraphWith(query) { (response, error) in
             
-            let collectionPageInfo = PageInfo(withPageInfo: (response?.shop.collections.pageInfo)!)
-            var collectionViewModels = [CollectionViewModel]()
-            
-            for collectionEdge in (response?.shop.collections.edges)! {
+            if let response = response  {
+                let collectionPageInfo = PageInfo(withPageInfo: (response.shop.collections.pageInfo))
+                var collectionViewModels = [CollectionViewModel]()
                 
-                let collectionModelObject = CollectionViewModel(from: collectionEdge)
-                collectionViewModels.append(collectionModelObject)
+                for collectionEdge in (response.shop.collections.edges) {
+                    
+                    let collectionModelObject = CollectionViewModel(from: collectionEdge)
+                    collectionViewModels.append(collectionModelObject)
+                }
+                
+                completion(collectionViewModels, collectionPageInfo)
+                
+            }else {
+                Errors.shared.handleQueryErrors(forError : error!)
             }
-            
-            completion(collectionViewModels, collectionPageInfo)
-            
         }
         task.resume()
     }
     
+    
+    
+    /// Get Products for the collection
+    ///
+    /// - Parameters:
+    ///   - query: Query from ClientQuery class, specify limit and cursors in the query method
+    ///   - completion: passes array of ProductViewModel and it's pageInfo on completion
     func getProducts(withQuery query : Storefront.QueryRootQuery, completion :  @escaping (_ productViewModels : [ProductViewModel]?, _ productPageInfo : PageInfo) -> () ){
         
         let task = client.queryGraphWith(query) { (response, error) in
@@ -81,11 +97,21 @@ class Client {
                 }
                 //let products = response.shop.products.edges.map{ $0.node }
                 completion(productViewModels, productPageInfo )
+                
+            }else{
+                Errors.shared.handleQueryErrors(forError: error!)
             }
         }
         task.resume()
     }
     
+    
+    
+    /// Get details for the product
+    /// Generally not required as the product details have already been feteched and stored in the productModel
+    /// - Parameters:
+    ///   - product: productName as Storefront.Product
+    ///   - completion: 
     func getDetailsForProduct (withProduct product : Storefront.Product, completion :  @escaping (_ collections : Storefront.Product) -> () ) {
         
         let query = ClientQuery.queryForProductDetails(withProduct: product)
@@ -93,6 +119,10 @@ class Client {
             if let response = response{
                 let product = response.node as? Storefront.Product
                 completion(product!)
+                
+            }else{
+                Errors.shared.handleQueryErrors(forError: error!)
+
             }
         }
         task.resume()
@@ -102,6 +132,11 @@ class Client {
     
     
     
+    /// Registers a customer with CustomerInfo ; see Customer Info for details
+    ///
+    /// - Parameters:
+    ///   - customerData: Customer Info details
+    ///   - completion: gives Storefront.Customer Object
     func createCustomer (withCustomerData customerData: CustomerInfo , completion :  @escaping (_ customer : Storefront.Customer) -> ()   ) {
         
         let input = Storefront.CustomerCreateInput(

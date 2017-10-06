@@ -38,7 +38,7 @@ extension ViewController {
     
     func loadCollectionsToArray () {
         
-        Client.shared.getCollectionsAndProducts(withQuery: ClientQuery.queryForCollections(limit: 10, after: nil, productLimit: 5, productCursor: nil)) { (collectionViewModels, pageInfo) in
+        Client.shared.getCollections(withQuery: ClientQuery.queryForCollections(limit: 10, after: "kmvsdgnu", productLimit: 5, productCursor: nil)) { (collectionViewModels, pageInfo) in
             
             if let obtainedCollectionModels = collectionViewModels {
                 

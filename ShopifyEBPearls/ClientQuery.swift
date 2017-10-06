@@ -11,6 +11,8 @@ import MobileBuySDK
 
 final class ClientQuery {
     
+    
+    
     static func queryForShopName () -> Storefront.QueryRootQuery {
         
         return  Storefront.buildQuery { $0
@@ -72,6 +74,8 @@ final class ClientQuery {
             }
         }
      }
+    
+    
     
     static func queryForProductDetails(withProduct product : Storefront.Product) -> Storefront.QueryRootQuery{
         
