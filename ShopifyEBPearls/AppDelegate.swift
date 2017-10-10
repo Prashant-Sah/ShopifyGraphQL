@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SWRevealViewController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        //let navVC = story.
+        let frontVC = story.instantiateViewController(withIdentifier: "mainNavVC") as? UINavigationController
+        let sideBarVC = story.instantiateViewController(withIdentifier: "SideBarViewController") as? SideBarViewController
+        let revealViewController = SWRevealViewController(rearViewController: sideBarVC, frontViewController: frontVC)
+        
+        self.window?.rootViewController = revealViewController
+        window?.makeKeyAndVisible()
+        
         return true
     }
 

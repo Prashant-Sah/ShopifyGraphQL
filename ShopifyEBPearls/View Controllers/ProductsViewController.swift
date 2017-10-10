@@ -9,7 +9,7 @@
 import UIKit
 import MobileBuySDK
 
-class ProductsViewController: UIViewController {
+class ProductsViewController: CustomRevealViewController {
     
     @IBOutlet weak var productsCollectionView: UICollectionView!
     

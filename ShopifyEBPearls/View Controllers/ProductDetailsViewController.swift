@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import MobileBuySDK
 
-class ProductDetailsViewController: UIViewController {
+class ProductDetailsViewController: CustomRevealViewController {
     
     @IBOutlet weak var titleImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

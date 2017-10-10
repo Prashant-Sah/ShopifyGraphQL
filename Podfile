@@ -6,6 +6,7 @@ target 'ShopifyEBPearls' do
   use_frameworks!
 
   # Pods for ShopifyEBPearls
-  pod 'Mobile-Buy-SDK', '~> 3.0.7'
+  pod 'Mobile-Buy-SDK', '~>3.0.7'
   pod 'SDWebImage', '~>4.0'
+  pod 'SWRevealViewController', '~>2.3'
 end
