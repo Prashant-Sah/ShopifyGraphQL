@@ -61,8 +61,8 @@ extension SignUpViewController {
         
         if (self.emailTextField.text != nil && self.passwordTextField.text != nil){
             
-            let customerData = CustomerInfo(email: self.emailTextField.text! , password: self.passwordTextField.text! , firstName: self.firstNameTextField.text ?? "" , lastName: self.lastNameTextField.text ?? "", phone: self.phoneTextField.text ?? nil, acceptsMarketing: self.acceptsMarketing )
-            
+            let customerData = CustomerInfo(email: self.emailTextField.text! , password: self.passwordTextField.text! , firstName: self.firstNameTextField.text ?? "" , lastName: self.lastNameTextField.text ?? "", phone: self.phoneTextField.text! , acceptsMarketing: self.acceptsMarketing )
+            //(self.phoneTextField.text == "") ? nil : self.phoneTextField.text
             Client.shared.createCustomer(withCustomerData: customerData) { (customer) in
                 
                 print(customer)

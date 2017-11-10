@@ -10,13 +10,91 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShopifyEBPearls/View Controllers/SignUpViewController.swift"
-            timestampString = "529315436.036688"
+            timestampString = "529316316.003479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
             endingLineNumber = "68"
             landmarkName = "createButtonPressed(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShopifyEBPearls/View Controllers/SignUpViewController.swift"
+            timestampString = "529316316.004296"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "createButtonPressed(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShopifyEBPearls.SignUpViewController.createButtonPressed(__ObjC.UIButton) -&gt; ()"
+                  moduleName = "ShopifyEBPearls"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashimdhakal/Desktop/ShopifyGraphQL/ShopifyEBPearls/View%20Controllers/SignUpViewController.swift"
+                  timestampString = "529316316.153529"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "1259">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #2 : @autoclosure () throws -&gt; Swift.String in ShopifyEBPearls.SignUpViewController.createButtonPressed(__ObjC.UIButton) -&gt; ()"
+                  moduleName = "ShopifyEBPearls"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashimdhakal/Desktop/ShopifyGraphQL/ShopifyEBPearls/View%20Controllers/SignUpViewController.swift"
+                  timestampString = "529316316.156678"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #3 : @autoclosure () throws -&gt; Swift.String in ShopifyEBPearls.SignUpViewController.createButtonPressed(__ObjC.UIButton) -&gt; ()"
+                  moduleName = "ShopifyEBPearls"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashimdhakal/Desktop/ShopifyGraphQL/ShopifyEBPearls/View%20Controllers/SignUpViewController.swift"
+                  timestampString = "529316316.160159"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #4 : @autoclosure () throws -&gt; Swift.Optional&lt;Swift.String&gt; in ShopifyEBPearls.SignUpViewController.createButtonPressed(__ObjC.UIButton) -&gt; ()"
+                  moduleName = "ShopifyEBPearls"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashimdhakal/Desktop/ShopifyGraphQL/ShopifyEBPearls/View%20Controllers/SignUpViewController.swift"
+                  timestampString = "529316316.16292"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
